@@ -1,0 +1,262 @@
+import { Head, Image, Appear } from 'mdx-deck';
+
+import Code from './components/Code';
+import Cover from './components/Cover';
+import Intro from './components/Intro';
+import Website from './components/Website';
+import Thanks from './components/Thanks';
+
+export { default as theme } from './theme';
+export * as components from './components';
+
+<Head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet" />
+  <title>Modifying code incrementally with ESLint rules</title>
+</Head>
+
+<Cover />
+
+---
+
+<Intro />
+
+---
+
+# Overview
+
+<ul>
+  <li>What are incremental modifications</li>
+  <li>Why incremental modifications</li>
+  <li>What is ESLint</li>
+  <li>Why ESLint</li>
+  <li>Creating a plugin</li>
+  <li>Creating rules</li>
+  <li>Auto fixing</li>
+  <li>Testing rules</li>
+</ul>
+
+---
+
+# What are incremental modifications
+
+<ul>
+  <li>
+    Every time a developer changes a file, it also fixes all techinal debt
+    together
+  </li>
+</ul>
+
+---
+
+# Why incremental modifications
+
+<ul>
+  <Appear>
+    <li>Easier to test</li>
+    <li>Easier to find bugs/edge cases</li>
+    <li>Good for UI breaking changes</li>
+    <li>Trade-off: the developers needs to change the file</li>
+  </Appear>
+</ul>
+
+---
+
+# What is ESLint
+
+<ul>
+  <Appear>
+    <li>Static code analysis: Analyse the code without running it</li>
+    <li>Used in almost every JavaScript project</li>
+    <li>Big community: 24.7M weekly downloads on NPM</li>
+  </Appear>
+</ul>
+
+---
+
+# Why ESLint
+
+<ul>
+  <Appear>
+    <li>More integrated with editors and IDEs</li>
+    <li>Runs in every commit with lint-staged</li>
+  </Appear>
+</ul>
+
+---
+
+# Creating a plugin
+
+<ol>
+  <li>Create a new package in your monorepo</li>
+  <li>Return a object with the rules</li>
+  <li>Add the plugin to your ESLint config</li>
+</ol>
+
+---
+
+<Code
+  title="ESLint plugin"
+  code={require('!raw-loader!./code/plugin.js')}
+  showNumbers={false}
+  dark={true}
+  lang="js"
+/>
+
+---
+
+<Code
+  title="ESLint config"
+  code={require('!raw-loader!./code/config.js')}
+  showNumbers={false}
+  dark={true}
+  lang="js"
+  steps={[
+    { range: [23, 23], notes: 'Add plugin' },
+    { range: [46, 48], notes: 'Configure rules' },
+  ]}
+/>
+
+---
+
+# Creating rules
+
+<ul>
+  <li>
+    <code>@typescript-eslint/utils</code>
+  </li>
+</ul>
+
+---
+
+<Code
+  title="createRule"
+  code={require('!raw-loader!./code/createRule.js')}
+  showNumbers={false}
+  dark={true}
+  lang="js"
+  fontSize={22}
+  steps={[
+    { range: [1, 8], notes: 'createRule.js' },
+    { range: [4, 5], notes: 'Documentation' },
+  ]}
+/>
+
+---
+
+## Rebass Flex to BoxFlex
+
+<ul>
+  <Appear>
+    <li>
+      Migrate <code>&lt;Flex /&gt;</code> to <code>&lt;BoxFlex /&gt;</code>
+    </li>
+    <li>
+      Remove <b>Flex</b> import
+    </li>
+    <li>
+      Add <b>BoxFlex</b> import
+    </li>
+    <li>
+      Migrate <b>props</b> to <b>sx</b>
+    </li>
+  </Appear>
+</ul>
+
+---
+
+<Code
+  title="<BoxFlex /> rule"
+  code={require('!raw-loader!./code/boxFlexRule.js')}
+  showNumbers={false}
+  dark={true}
+  lang="js"
+  fontSize={22}
+  steps={[
+    { range: [1, 117], notes: 'boxFlexRule.js' },
+    { range: [13, 13], notes: 'createRule' },
+    { range: [101, 115], notes: 'Options' },
+    { range: [14, 100], notes: 'Create' },
+    { range: [15, 42], notes: 'Finding the import' },
+    { range: [43, 50], notes: 'Finding the element' },
+    { range: [51, 54], notes: 'Report problem' },
+  ]}
+/>
+
+---
+
+# Auto fixing
+
+<ul>
+  <Appear>
+    <li>Generators</li>
+    <li>You replace node with text</li>
+  </Appear>
+</ul>
+
+---
+
+<Code
+  title="<BoxFlex /> rule"
+  code={require('!raw-loader!./code/boxFlexRule.js')}
+  showNumbers={false}
+  dark={true}
+  lang="js"
+  fontSize={22}
+  steps={[
+    { range: [55, 98], notes: 'Auto fixing' },
+    { range: [56, 82], notes: 'Fixing element and props' },
+    { range: [84, 96], notes: 'Fixing imports' },
+    { range: [4, 11], notes: 'findRootNode' },
+  ]}
+/>
+
+---
+
+# Testing rules
+
+<ul>
+  <Appear>
+    <li>Works with any test framework</li>
+    <li>Inline input and output check</li>
+  </Appear>
+</ul>
+
+---
+
+<Code
+  title="Testing <BoxFlex /> rule"
+  code={require('!raw-loader!./code/boxFlexRule.spec.js')}
+  showNumbers={false}
+  dark={true}
+  lang="js"
+  fontSize={22}
+  steps={[
+    { range: [1, 208], notes: 'boxFlexRule.spec.js' },
+    { range: [1, 16], notes: 'Test ruler' },
+    { range: [17, 52], notes: 'Valid test cases' },
+    { range: [53, 206], notes: 'Invalid test cases' },
+    { range: [154, 179], notes: 'A invalid test case example' },
+  ]}
+/>
+
+---
+
+# References
+
+- [Working with plugins - ESLint docs](https://eslint.org/docs/latest/developer-guide/working-with-plugins)
+- [Working with rules - ESLint docs](https://eslint.org/docs/latest/developer-guide/working-with-rules)
+- [Custom rules - TypeScript ESLint](https://typescript-eslint.io/docs/development/custom-rules)
+
+---
+
+<Website />
+
+---
+
+<Thanks />
