@@ -12,7 +12,7 @@ const Website = () => {
   return (
     <>
       <h1>Website</h1>
-      <Img src="../assets/website-qrcode.png" />
+      <Img src="../img/website-qrcode.png" />
       <Link href="https://fersilva.dev" target="_blank">
         <h2>fersilva.dev</h2>
       </Link>
