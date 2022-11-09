@@ -1,4 +1,8 @@
+![Screenshot](https://github.com/fersilva16/eslint-rules-talk/blob/main/.github/screenshot.png)
+
 # Modifying code incrementally with ESLint rules
+
+Slides: https://fersilva16.github.io/eslint-rules-talk
 
 # How to Run
 
