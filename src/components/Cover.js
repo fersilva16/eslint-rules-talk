@@ -32,7 +32,7 @@ const Cover = () => {
   return (
     <Background>
       <Container>
-        <Img src="../assets/eslint-logo.svg" />
+        <Img src="../img/eslint-logo.svg" />
         <h1>Modifying code incrementally with ESLint rules</h1>
         <Name>Fernando Silva</Name>
       </Container>

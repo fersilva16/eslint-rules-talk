@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaTwitter, FaGithub } from 'react-icons/fa';
-import { WooviLogo } from '../assets/WooviLogo';
+import { WooviLogo } from '../img/WooviLogo';
 
 const Img = styled.img`
   width: 160px;
@@ -39,7 +39,7 @@ const Title = styled.h2`
 const Intro = () => {
   return (
     <>
-      <Img src="../assets/profile-photo.png" />
+      <Img src="../img/profile-photo.png" />
       <h1>Fernando Silva</h1>
       <Socials>
         <Social href="https://twitter.com/fersilvaa16" target="_blank">
