@@ -21,7 +21,7 @@ const Thanks = () => {
     <>
       <h1>Thanks</h1>
       <h2>We are hiring!</h2>
-      <Img src="../img/hiring-qrcode.png" />
+      <Img src="./img/hiring-qrcode.png" />
       <Link href="https://woovi.com/jobs" target="_blank">
         <h2>woovi.com/jobs</h2>
       </Link>
